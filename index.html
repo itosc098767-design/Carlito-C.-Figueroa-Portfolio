@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carlito C. Figueroa | Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="logo">
+        <span>Portfolio</span> Project
+      </div>
+
+      <div class="nav-links desktop-nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="Products.html">Products</a>
+        <a href="Services.html">Services</a>
+        <a href="Contacts.html">Contact</a>
+      </div>
+
+      <button class="hamburger" aria-label="Open menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+
+    <div class="dropdown" id="mobileMenu">
+      <div class="dropdown-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="Products.html">Products</a>
+        <a href="Services.html">Services</a>
+        <a href="Contacts.html">Contact</a>
+      </div>
+      <button class="close-menu" aria-label="Close menu">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-visual">
+        <img src="main.jpg" alt="Carlito Figueroa portrait">
+      </div>
+
+      <div class="hero-content">
+        <p class="eyebrow"></p>
+        <h1>Carlito <span>Figueroa</span></h1>
+        <div class="typewriter-wrap">
+          <span>Hello I'm</span>
+          <span class="typewriter-text"></span>
+        </div>
+        <p class="intro">
+          I'm here to create impactful and engaging content that resonates with audiences and achieves meaningful results.
+        </p>
+
+        <div class="social-links">
+          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+          <a href="#" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        </div>
+        </div>
+      </div>
+    </section>
+  <script>
+    const hamburger = document.querySelector('.hamburger');
+    const closeMenu = document.querySelector('.close-menu');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    hamburger.addEventListener('click', () => {
+      mobileMenu.classList.add('show');
+    });
+
+    closeMenu.addEventListener('click', () => {
+      mobileMenu.classList.remove('show');
+    });
+
+    document.querySelectorAll('.dropdown-links a').forEach((link) => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('show');
+      });
+    });
+
+    const words = ['Video Editor', 'BSCS STUDENT', 'Creative Designer'];
+    const typewriterText = document.querySelector('.typewriter-text');
+    let wordIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+
+    const typeLoop = () => {
+      const currentWord = words[wordIndex];
+      if (!typewriterText) return;
+
+      if (!isDeleting) {
+        typewriterText.textContent = currentWord.slice(0, charIndex + 1);
+        charIndex++;
+
+        if (charIndex === currentWord.length) {
+          isDeleting = true;
+          setTimeout(typeLoop, 1200);
+          return;
+        }
+      } else {
+        typewriterText.textContent = currentWord.slice(0, charIndex - 1);
+        charIndex--;
+
+        if (charIndex === 0) {
+          isDeleting = false;
+          wordIndex = (wordIndex + 1) % words.length;
+        }
+      }
+
+      const speed = isDeleting ? 70 : 120;
+      setTimeout(typeLoop, speed);
+    };
+
+    typeLoop();
+  </script>
+</body>
+
+</html>

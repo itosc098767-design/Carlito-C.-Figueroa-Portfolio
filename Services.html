@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services | Carlito C. Figueroa</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="logo">
+        <span>Carlito</span> Figueroa
+      </div>
+
+      <div class="nav-links desktop-nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="Services.html">Services</a>
+        <a href="Products.html">Products</a>
+        <a href="Contacts.html">Contact</a>
+      </div>
+
+      <button class="hamburger" aria-label="Open menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+
+    <div class="dropdown" id="mobileMenu">
+      <div class="dropdown-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="Products.html">Products</a>
+        <a href="Services.html">Services</a>
+        <a href="Contacts.html">Contact</a>
+      </div>
+      <button class="close-menu" aria-label="Close menu">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+  </nav>
+
+  <main>
+    <section class="services" id="services" style="padding-top: 100px;">
+      <div class="section-heading">
+        <span>My Services</span>
+      </div>
+
+      <div class="achievement-grid">
+        <article class="achievement-card">
+          <i class="fa-solid fa-video"></i>
+          <h3>Video Editing</h3>
+          <p>Professional video editing for content creators, businesses, and social media campaigns.</p>
+        </article>
+
+        <article class="achievement-card">
+          <i class="fa-solid fa-film"></i>
+          <h3>Reels & Shorts</h3>
+          <p>Short-form video production designed to grab attention and increase audience engagement.</p>
+        </article>
+
+        <article class="achievement-card">
+          <i class="fa-solid fa-code"></i>
+          <h3>Web Design</h3>
+          <p>Modern, responsive website layouts tailored for personal brands and small businesses.</p>
+        </article>
+
+        <article class="achievement-card">
+          <i class="fa-solid fa-paintbrush"></i>
+          <h3>Graphic Design</h3>
+          <p>Creative visual concepts for posters, branding, social content, and digital assets.</p>
+        </article>
+
+        <article class="achievement-card">
+          <i class="fa-solid fa-chart-line"></i>
+          <h3>Content Strategy</h3>
+          <p>Ideas and planning support to build content that is consistent, clear, and effective.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Created by <a href="#">Carlito C. Figueroa</a> &copy; 2026. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const hamburger = document.querySelector('.hamburger');
+    const closeMenu = document.querySelector('.close-menu');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    hamburger.addEventListener('click', () => {
+      mobileMenu.classList.add('show');
+    });
+
+    closeMenu.addEventListener('click', () => {
+      mobileMenu.classList.remove('show');
+    });
+
+    document.querySelectorAll('.dropdown-links a').forEach((link) => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('show');
+      });
+    });
+
+    const words = ['Video Editor', 'BSCS STUDENT', 'Creative Designer'];
+    const typewriterText = document.querySelector('.typewriter-text');
+    let wordIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+
+    const typeLoop = () => {
+      const currentWord = words[wordIndex];
+      if (!typewriterText) return;
+
+      if (!isDeleting) {
+        typewriterText.textContent = currentWord.slice(0, charIndex + 1);
+        charIndex++;
+
+        if (charIndex === currentWord.length) {
+          isDeleting = true;
+          setTimeout(typeLoop, 1200);
+          return;
+        }
+      } else {
+        typewriterText.textContent = currentWord.slice(0, charIndex - 1);
+        charIndex--;
+
+        if (charIndex === 0) {
+          isDeleting = false;
+          wordIndex = (wordIndex + 1) % words.length;
+        }
+      }
+
+      const speed = isDeleting ? 70 : 120;
+      setTimeout(typeLoop, speed);
+    };
+
+    typeLoop();
+  </script>
+</body>
+
+</html>
